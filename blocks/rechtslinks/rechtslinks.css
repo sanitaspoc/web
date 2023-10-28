@@ -1,0 +1,30 @@
+  .rechtslinks {
+    
+  }
+
+  .rechtslinks .rechtslinks-heading h2 {
+    font-size: 32px;
+  }
+
+  .rechtslinks .image-side {
+    width: 45%;
+  }
+
+  .rechtslinks .content-side {
+    width: 50%;
+  }
+
+  .rechtslinks > div[class^="z-row"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:  5px;
+    margin-bottom: 5px;
+  }
+
+  @media (min-width: 600px) {
+    .rechtslinks > div[class^="z-row"] {
+      flex-direction: row;
+    }
+  }
