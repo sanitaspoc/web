@@ -46,6 +46,21 @@ function toggleAllNavSections(sections, expanded = false) {
   });
 }
 
+function hidePrivateOrBusinessSection(sections, privateIsSelected, businessSelected) {
+  sections.querySelectorAll('.nav-sections > ul > li').forEach((section) => {
+    const navigationText = section.innerText.toLowerCase();
+    const isPrivateSection = navigationText.indexOf('privatkunden') !== -1;
+    const isBusinessSection = navigationText.indexOf('unternehmenskunden') !== -1;
+    if (privateIsSelected && isBusinessSection) {
+      section.style.visibility = "hidden";
+    }
+    if (businessSelected && isPrivateSection) {
+      section.style.visibility = "hidden";
+    }
+
+  });
+}
+
 /**
  * Toggles the entire nav
  * @param {Element} nav The container element
@@ -109,6 +124,9 @@ export default async function decorate(block) {
       if (section) section.classList.add(`nav-${c}`);
     });
 
+    const isPrivateCustomerNavSelected = window.location && window.location.href.indexOf('/privatkunden/') !== -1;
+    const isBusinessNavSelected = window.location && window.location.href.indexOf('/unternehmenskunden/') !== -1;
+
     const navSections = nav.querySelector('.nav-sections');
     if (navSections) {
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
@@ -120,6 +138,7 @@ export default async function decorate(block) {
             navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
           }
         });
+        hidePrivateOrBusinessSection(navSections, isPrivateCustomerNavSelected, isBusinessNavSelected);
       });
     }
 
