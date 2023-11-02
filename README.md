@@ -1,9 +1,9 @@
 # Your Project's Title...
-Your project's description...
+Sanitas POC aem.live
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.hlx.page/
-- Live: https://main--{repo}--{owner}.hlx.live/
+- Preview: https://main--web--sanitaspoc.hlx.page/
+- Live: https://main--web--sanitaspoc.hlx.live/
 
 ## Installation
 
