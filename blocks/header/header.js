@@ -48,16 +48,15 @@ function toggleAllNavSections(sections, expanded = false) {
 
 function hidePrivateOrBusinessSection(sections, privateIsSelected, businessSelected) {
   sections.querySelectorAll('.nav-sections > ul > li').forEach((section) => {
-    const navigationText = section.innerText.toLowerCase();
+    const navigationText = section.innerText.split('\n')[0].toLowerCase()
     const isPrivateSection = navigationText.indexOf('privatkunden') !== -1;
     const isBusinessSection = navigationText.indexOf('unternehmenskunden') !== -1;
-    if (privateIsSelected && isBusinessSection) {
-      section.style.visibility = "hidden";
-    }
     if (businessSelected && isPrivateSection) {
-      section.style.visibility = "hidden";
+      section.style.display = "none";
     }
-
+    if (isBusinessSection && !businessSelected) {
+      section.style.display = "none";
+    }
   });
 }
 
@@ -121,11 +120,11 @@ export default async function decorate(block) {
     const classes = ['brand', 'sections', 'tools'];
     classes.forEach((c, i) => {
       const section = nav.children[i];
-      if (section) section.classList.add(`nav-${c}`);
+            if (section) section.classList.add(`nav-${c}`);
     });
 
-    const isPrivateCustomerNavSelected = window.location && window.location.href.indexOf('/privatkunden/') !== -1;
-    const isBusinessNavSelected = window.location && window.location.href.indexOf('/unternehmenskunden/') !== -1;
+    const isPrivateCustomerNavSelected = window.location && window.location.href.toLowerCase().indexOf('/privatkunden/') !== -1;
+    const isBusinessNavSelected = window.location && window.location.href.toLowerCase().indexOf('/unternehmenskunden/') !== -1;
 
     const navSections = nav.querySelector('.nav-sections');
     if (navSections) {
