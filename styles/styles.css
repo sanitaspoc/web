@@ -14,10 +14,12 @@
   /* colors */
   --link-color: #43AA00;
   --link-hover-color: #43AA00;
-  --background-color: #fff;
+  --background-color: #000;
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
-  --text-color: #000;
+  --text-color: #fff;
+  --content-text-color: #000;
+  --content-background-color: #fff;
 
   /* fonts */
   --body-font-family: 'Open Sans', sans-serif;
@@ -119,6 +121,11 @@ code, samp {
 
 pre {
   overflow: scroll;
+}
+
+main .columns-container {
+  background-color: var(--content-background-color);
+  color: var(--content-text-color);
 }
 
 main pre {
